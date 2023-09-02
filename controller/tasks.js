@@ -4,7 +4,7 @@ const Tasks = require("../model/tasks");
 
 
 
-async function addNewTask(req,res){
+async function addNewTask(req,res,next){
 
   try {
     const {task , description} = req.body;
@@ -27,7 +27,7 @@ async function addNewTask(req,res){
 
 
 
-async function getMyTasks(req,res){
+async function getMyTasks(req,res,next){
     try {
         
         const userId = req.user._id
@@ -46,7 +46,7 @@ res.status(200).json({
 }
 
 
-async function updateTask(req,res){
+async function updateTask(req,res,next){
    try {
     
     const id = req.params.id;

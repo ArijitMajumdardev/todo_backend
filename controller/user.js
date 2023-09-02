@@ -2,10 +2,11 @@ const User = require('../model/user')
 const bcrypt = require('bcrypt')
 const {sendCookie} = require('../service/auth');
 const jwt = require('jsonwebtoken');
+const {ErrorHandler} = require('../middlewares/errorMiddlewarea')
 
 
 
-async function handleUserSignUp(req,res){
+async function handleUserSignUp(req,res,next){
 
     try {
         const {name, email ,password} = req.body;
@@ -39,7 +40,7 @@ async function handleUserSignUp(req,res){
 
 
 
-async function handleUserLogin(req,res){
+async function handleUserLogin(req,res,next){
 
     try {
         
@@ -84,7 +85,7 @@ function handleUserLogout(req,res){
       
     res.status(200).cookie("token","",{
        expires: new Date(Date.now()),
-       sameSite : process.env.NODE_ENV === "Developement"? lax : none,
+       sameSite : process.env.NODE_ENV === "Developement"?'Lax' : 'None',
        secure : process.env.NODE_ENV === "Developement"? false : true,
     }).json({
         success: true,

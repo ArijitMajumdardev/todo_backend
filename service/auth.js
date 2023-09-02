@@ -8,7 +8,7 @@ function sendCookie(user,res,message,statusCode = 200){
     res.status(statusCode).cookie("token",token,{
        httpOnly:true,
        maxAge: 1000*60*60,
-       sameSite : process.env.NODE_ENV === "Developement"? lax : none,
+       sameSite : process.env.NODE_ENV === "Developement"?"Lax":"None",
        secure : process.env.NODE_ENV === "Developement"? false : true,
    }).json({
        success: true,
@@ -18,4 +18,4 @@ function sendCookie(user,res,message,statusCode = 200){
 
 module.exports = {
     sendCookie
-} 
+}  

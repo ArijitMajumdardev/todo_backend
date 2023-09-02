@@ -1,8 +1,12 @@
 const mongoose = require('mongoose')
 
- async function connectToDb(url){
-    mongoose.connect(url).then(()=>{
-        console.log("db connected")
+ async function connectToDb(){
+    mongoose.connect(process.env.MONGO_URI,{
+        dbName:"todo_db"
+    }).then((c)=>{
+        console.log(`db connected ${c.connection.host}`)
+    }).catch((e)=>{
+        console.log(e)
     })
 }
 
